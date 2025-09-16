@@ -85,19 +85,19 @@ export default function AISearch() {
     return (
         <Popover>
             <PopoverTrigger asChild>
-                <Button variant="outline" className="w-full justify-start text-slate-500">
-                    <BrainCircuit className="w-4 h-4 mr-2" />
-                    AI Assistant...
+                <Button variant="outline" className="w-full justify-start text-slate-500 rounded-[30px]">
+                    fleethub AI companion, search eveything you need here...
                 </Button>
             </PopoverTrigger>
             <PopoverContent className="w-72 p-4">
                 <form onSubmit={handleSearch} className="space-y-3">
                     <label className="text-sm font-medium text-slate-800">What do you need to do?</label>
                     <div className="flex gap-2">
-                        <Input 
+                       <Input 
                             placeholder="e.g., 'adjust daily rates'"
                             value={query}
                             onChange={(e) => setQuery(e.target.value)}
+                            className="rounded-[30px]"  // Add this line
                         />
                         <Button type="submit" size="icon" disabled={isLoading}>
                             <Send className="w-4 h-4" />

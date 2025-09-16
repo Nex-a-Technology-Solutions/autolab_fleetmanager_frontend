@@ -66,7 +66,7 @@ export default function Layout({ children, currentPageName }) {
   const getMediaUrl = (path) => {
     if (!path) return null;
     if (path.startsWith('http')) return path;
-    return `https://autolab-fleetmanager-backend-api.onrender.com/${path}`;
+    return `http://127.0.0.1:8000/${path}`;
   };
 
   // Helper function to get avatar URL with fallback
@@ -347,18 +347,12 @@ export default function Layout({ children, currentPageName }) {
                           }}
                         />
                       ) : null}
-                      <div 
-                        className={`w-8 h-8 rounded bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center ${organizationLogo ? 'hidden' : 'flex'}`}
-                        style={{display: organizationLogo ? 'none' : 'flex'}}
-                      >
-                        <Building className="w-4 h-4 text-white" />
-                      </div>
                       <div className="text-lg font-semibold text-slate-800 truncate">
                         {organizationName}
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
-                      <NotificationBell />
+                      
                       <div className="relative">
                         {userAvatarUrl ? (
                           <img 
@@ -372,7 +366,7 @@ export default function Layout({ children, currentPageName }) {
                           />
                         ) : null}
                         <div 
-                          className={`w-10 h-10 rounded-full bg-gradient-to-br from-slate-400 to-slate-500 flex items-center justify-center text-white font-semibold text-sm ${userAvatarUrl ? 'hidden' : 'flex'}`}
+                          className={`w-8 h-8 rounded-full bg-black from-slate-400 to-slate-500 flex items-center justify-center text-white font-normal text-xs ${userAvatarUrl ? 'hidden' : 'flex'}`}
                           style={{display: userAvatarUrl ? 'none' : 'flex'}}
                         >
                           {getRoleInitials(currentUser)}
@@ -416,25 +410,13 @@ export default function Layout({ children, currentPageName }) {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
                     </svg>
                   </button>
-                  <div className="relative hidden lg:block">
+                  <div className="relative hidden lg:block" style={{ borderRadius: '30px' }}>
                     <AISearch />
                   </div>
                 </div>
-
+               
                 <div className="flex items-center gap-4">
-                  <div className="hidden lg:flex items-center gap-2">
-                    <button className="p-2 rounded-md text-slate-500 hover:bg-slate-100 transition-all duration-200">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.403 1.403A2 2 0 0116 21H8a2 2 0 01-1.597-.724L5.999 17h5m4-10H5l1.403-1.403A2 2 0 018 3h8a2 2 0 011.597.724L18.001 7z" />
-                      </svg>
-                    </button>
-                    <button className="p-2 rounded-md text-slate-500 hover:bg-slate-100 transition-all duration-200">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7h18M3 12h18m-7 5h7" />
-                      </svg>
-                    </button>
-                  </div>
-
+                  <NotificationBell />
                   <div className="relative">
                     {userAvatarUrl ? (
                       <img 
@@ -448,8 +430,11 @@ export default function Layout({ children, currentPageName }) {
                       />
                     ) : null}
                     <div 
-                      className={`w-10 h-10 rounded-full bg-gradient-to-br from-slate-400 to-slate-500 flex items-center justify-center text-white font-semibold text-sm hover:ring-2 hover:ring-blue-300 transition-all duration-200 cursor-pointer ${userAvatarUrl ? 'hidden' : 'flex'}`}
-                      style={{display: userAvatarUrl ? 'none' : 'flex'}}
+                      className={`w-10 h-10 rounded-full flex items-center justify-center text-white font-semibold text-sm hover:ring-2 hover:ring-blue-300 transition-all duration-200 cursor-pointer ${userAvatarUrl ? 'hidden' : 'flex'}`}
+                      style={{
+                        background: 'linear-gradient(135deg, var(--wwfh-red), var(--wwfh-red-light))',
+                        display: userAvatarUrl ? 'none' : 'flex'
+                      }}
                     >
                       {getRoleInitials(currentUser)}
                     </div>

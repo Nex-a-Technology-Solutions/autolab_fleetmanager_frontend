@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -8,11 +7,11 @@ import { createPageUrl } from "@/utils";
 import { 
   Plus, 
   Search, 
-  Car, // Unused in the provided outline but kept for completeness based on original
+  Car,
   ClipboardCheck,
   ArrowRight,
   Sparkles,
-  TestTubeDiagonal,
+  CheckCircle2, // Using CheckCircle2 instead - more reliable icon
   Wrench,
   ShieldCheck,
   Monitor
@@ -43,7 +42,7 @@ const quickActions = [
   {
     title: "Driving Checks",
     description: "Vehicle road testing",
-    icon: TestTubeDiagonal,
+    icon: CheckCircle2, // Using CheckCircle2 instead - more reliable icon
     url: createPageUrl("DrivingCheck"),
     color: "var(--wwfh-navy)"
   },
@@ -89,32 +88,36 @@ export default function QuickActions() {
           <CardTitle style={{color: 'var(--wwfh-navy)'}}>WWFH Quick Actions</CardTitle>
         </CardHeader>
         <CardContent className="space-y-2">
-          {quickActions.map((action, index) => (
-            <Link key={action.title} to={action.url}>
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 * index }}
-              >
-                <Button 
-                  variant="ghost" 
-                  className="w-full justify-start h-auto p-3 hover:bg-slate-50 group transition-all duration-200"
+          {quickActions.map((action, index) => {
+            const IconComponent = action.icon;
+            
+            return (
+              <Link key={action.title} to={action.url}>
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 * index }}
                 >
-                  <div 
-                    className="w-8 h-8 rounded-lg flex items-center justify-center mr-3 group-hover:scale-105 transition-transform"
-                    style={{background: action.color}}
+                  <Button 
+                    variant="ghost" 
+                    className="w-full justify-start h-auto p-3 hover:bg-slate-50 group transition-all duration-200"
                   >
-                    <action.icon className="w-4 h-4 text-white" />
-                  </div>
-                  <div className="flex-1 text-left">
-                    <div className="font-medium text-sm" style={{color: 'var(--wwfh-navy)'}}>{action.title}</div>
-                    <div className="text-xs text-slate-600">{action.description}</div>
-                  </div>
-                  <ArrowRight className="w-3 h-3 text-slate-400 group-hover:text-slate-600 group-hover:translate-x-1 transition-all" />
-                </Button>
-              </motion.div>
-            </Link>
-          ))}
+                    <div 
+                      className="w-8 h-8 rounded-lg flex items-center justify-center mr-3 group-hover:scale-105 transition-transform"
+                      style={{background: action.color}}
+                    >
+                      <IconComponent className="w-4 h-4 text-white" />
+                    </div>
+                    <div className="flex-1 text-left">
+                      <div className="font-medium text-sm" style={{color: 'var(--wwfh-navy)'}}>{action.title}</div>
+                      <div className="text-xs text-slate-600">{action.description}</div>
+                    </div>
+                    <ArrowRight className="w-3 h-3 text-slate-400 group-hover:text-slate-600 group-hover:translate-x-1 transition-all" />
+                  </Button>
+                </motion.div>
+              </Link>
+            );
+          })}
         </CardContent>
       </Card>
     </motion.div>
